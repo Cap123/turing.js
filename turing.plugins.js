@@ -55,11 +55,11 @@ define('turing.plugins', ['turing.core'], function(turing) {
    * @param {String} methodName The name of the plugin
    */
   plugins.remove = function(methodName) {
-    if (!plugins.registered.hasOwnProperty(methodName)) {
-      throw new plugins.NotFound('Plugin not found: ' + methodName);
-    } else {
+    if (!plugins.registered[methodName]) {
       delete plugins.registered[methodName]
       delete turing.domChain[methodName];
+    } else {
+      throw new plugins.NotFound('Plugin not found: ' + methodName);
     }
   };
 
